@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="http://at.alicdn.com/t/font_1217967_4rs4jv1rz5r.css">
+
+    <!-- 1. 引入环境支撑  -->
+    <link rel="stylesheet" href="https://zuozhaoxi.com/base/swiper/css/swiper.css">
+    <script src="https://zuozhaoxi.com/base/swiper/js/swiper.js"></script>
+    <title>react-project</title>
+    <!-- 引入mui所需环境支撑,是在大左的线上的 -->
+    <script src="http://zuozhaoxi.com/base/mui/js/mui.min.js"></script>
+    <link href="http://zuozhaoxi.com/base/mui/css/mui.min.css" rel="stylesheet"/>
+    <script type="text/javascript" charset="utf-8">
+      var  scan = null;
+          mui.init({
+			beforeback: function(){
+				scan.close();
+				return true;
+			}
+		  });
+          
+       document.addEventListener("plusready",function(){
+
+   			// getDevice();
+   			// getAcc();
+   			// getGeoLocation();
+   			getAuthServices();
+   			// getShareServies();
+        },false);
+        	// 第三方登录 
+   		var auths = null;
+   		function getAuthServices(){
+   			plus.oauth.getServices((services)=>{
+   				auths  = services;
+   				console.log(JSON.stringify((auths)))
+   				logoutAuths()
+   			},(e)=>{
+   				plus.nativeUI.alert("获取登录授权服务列表失败："+JSON.stringify(e));
+   			})
+   		}
+   		
+   		function logoutAuths(){
+   			for(var i in  auths){
+   				auths[i].logout(function(e){
+					console.log("注销授权登录成功 " + auths[i].id)
+				}, function(e){
+					console.log("注销登录认证失败: "+JSON.stringify(e));
+				});
+   			}
+   		}  
+
+    </script>
+
+    <meta name="referrer" content="no-referrer" />
+     <!-- UI库  antd-mobile 的样式引入 -->
+     <script src="https://as.alipayobjects.com/g/component/fastclick/1.0.6/fastclick.js"></script>
+     <script>
+       if ('addEventListener' in document) {
+         document.addEventListener('DOMContentLoaded', function() {
+           FastClick.attach(document.body);
+         }, false);
+       }
+       if(!window.Promise) {
+         document.writeln('<script src="https://as.alipayobjects.com/g/component/es6-promise/3.2.2/es6-promise.min.js"'+'>'+'<'+'/'+'script>');
+       }
+     </script>
+<link href="css/app.4d71c747.css" rel="stylesheet"></head>
+<body>
+    <div id="app"></div>
+<script type="text/javascript" src="js/main.4d71c747.js"></script></body>
+</html>
